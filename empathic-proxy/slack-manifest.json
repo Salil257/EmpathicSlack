@@ -1,0 +1,63 @@
+{
+  "display_information": {
+    "name": "Empathic Proxy",
+    "description": "Consolidates mentions, DMs and priority signals into an inbox with LLM-powered action extraction and reply suggestions",
+    "background_color": "#2c2d30",
+    "long_description": "Empathic Proxy is a Slack-first MVP that helps busy professionals manage their Slack communications more efficiently. It consolidates all mentions, direct messages, and priority channel signals into a unified inbox accessible via the Home tab. The app uses an LLM to automatically extract concise action items and suggest appropriate replies for each message. Users can compose, transform (tone/length), preview, and post replies directly from Slack."
+  },
+  "features": {
+    "bot_user": {
+      "display_name": "Empathic Proxy",
+      "always_online": true
+    },
+    "app_home": {
+      "home_tab_enabled": true,
+      "messages_tab_enabled": false,
+      "messages_tab_read_only_enabled": false
+    },
+    "shortcuts": [
+      {
+        "callback_id": "compose_reply",
+        "name": "Compose Reply",
+        "type": "message",
+        "description": "Open composer for this message"
+      }
+    ]
+  },
+  "oauth_config": {
+    "scopes": {
+      "bot": [
+        "app_mentions:read",
+        "channels:history",
+        "chat:write",
+        "im:history",
+        "im:read",
+        "im:write",
+        "users:read"
+      ],
+      "user": [
+        "chat:write"
+      ]
+    },
+    "redirect_urls": [
+      "http://localhost:8080/oauth/callback"
+    ]
+  },
+  "settings": {
+    "event_subscriptions": {
+      "request_url": "http://localhost:8080/events",
+      "bot_events": [
+        "app_mentions",
+        "message.im"
+      ]
+    },
+    "interactivity": {
+      "is_enabled": true,
+      "request_url": "http://localhost:8080/interactivity"
+    },
+    "org_deploy_enabled": false,
+    "socket_mode_enabled": false,
+    "token_rotation_enabled": false
+  }
+}
+

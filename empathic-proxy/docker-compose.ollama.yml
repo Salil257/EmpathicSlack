@@ -1,0 +1,22 @@
+version: '3.8'
+
+# Alternative: Ollama setup (simpler, but requires manual model download)
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: empathic-proxy-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  ollama-data:
+

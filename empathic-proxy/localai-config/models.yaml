@@ -1,0 +1,41 @@
+# LocalAI Models Configuration
+# This config uses lightweight models suitable for local development
+# For production, consider using larger models
+
+# Option 1: TinyLlama (Very fast, ~600MB, good for testing)
+- name: gpt-3.5-turbo
+  backend: llama
+  parameters:
+    model: tinyllama
+  context_size: 2048
+  f16: true
+  threads: 4
+  debug: true
+  embeddings: false
+  # Auto-download from HuggingFace
+  source: https://huggingface.co/ggml-org/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf
+
+# Option 2: Phi-2 (Small but capable, ~1.6GB)
+# Uncomment to use instead of TinyLlama
+# - name: gpt-3.5-turbo
+#   backend: llama-stable
+#   parameters:
+#     model: phi-2
+#   context_size: 2048
+#   f16: true
+#   threads: 4
+#   debug: true
+#   embeddings: false
+#   source: https://huggingface.co/microsoft/phi-2/resolve/main/phi-2.gguf
+
+# Option 3: Llama 2 7B (Better quality, ~4GB, slower)
+# - name: gpt-3.5-turbo
+#   backend: llama-stable
+#   parameters:
+#     model: llama-2-7b
+#   context_size: 4096
+#   f16: true
+#   threads: 4
+#   debug: true
+#   embeddings: false
+#   source: https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf

@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  localai:
+    image: quay.io/go-skynet/local-ai:latest-aio-cpu
+    container_name: empathic-proxy-localai
+    ports:
+      - "8081:8080"
+    environment:
+      - MODELS_PATH=/models
+      - THREADS=4
+      - CONTEXT_SIZE=512
+      - DEBUG=true
+      - BUILD_TYPE=cublas
+      - PRELOAD_MODELS=true
+    volumes:
+      - ./models:/models
+      - ./localai-config:/config
+    command: ["local-ai", "--models-path", "/models", "--preload-models", "--preload-models-config", "/config/models.yaml"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/ready"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
