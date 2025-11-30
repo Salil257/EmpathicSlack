@@ -1,0 +1,63 @@
+{
+    "display_information": {
+        "name": "Empathic Proxy",
+        "description": "Unified inbox with LLM-powered action extraction & reply suggestions",
+        "background_color": "#2c2d30"
+    },
+    "features": {
+        "app_home": {
+            "home_tab_enabled": true,
+            "messages_tab_enabled": false,
+            "messages_tab_read_only_enabled": false
+        },
+        "bot_user": {
+            "display_name": "Empathic Proxy",
+            "always_online": true
+        },
+        "shortcuts": [
+            {
+                "name": "Compose Reply",
+                "type": "message",
+                "callback_id": "compose_reply",
+                "description": "Open composer for this message"
+            }
+        ]
+    },
+    "oauth_config": {
+        "redirect_urls": [
+            "https://prologlike-neville-vicious.ngrok-free.dev/slack/oauth/callback"
+        ],
+        "scopes": {
+            "bot": [
+                "app_mentions:read",
+                "channels:history",
+                "chat:write",
+                "commands",
+                "im:history",
+                "im:read",
+                "im:write",
+                "users:read",
+                "channels:read",
+                "groups:read"
+            ]
+        }
+    },
+    "settings": {
+        "event_subscriptions": {
+            "request_url": "https://prologlike-neville-vicious.ngrok-free.dev/events",
+            "bot_events": [
+                "app_mention",
+                "message.channels",
+                "message.im",
+                "app_home_opened"
+            ]
+        },
+        "interactivity": {
+            "is_enabled": true,
+            "request_url": "https://prologlike-neville-vicious.ngrok-free.dev/slack/interactivity"
+        },
+        "org_deploy_enabled": false,
+        "socket_mode_enabled": false,
+        "token_rotation_enabled": false
+    }
+}
